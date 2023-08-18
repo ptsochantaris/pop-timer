@@ -1,6 +1,6 @@
 <img src="https://ptsochantaris.github.io/trailer/PopTimerLogo.webp" alt="Logo" width=256 align="right">
 
-# pop-timer
+# PopTimer
 That debouncing timer that we've all written 50 times already, in one place, so we can stop.
 
 Currently used in

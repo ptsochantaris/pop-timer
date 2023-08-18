@@ -20,7 +20,7 @@ public final class PopTimer {
     public var isPushed: Bool {
         publisher.value
     }
-    
+
     /// Create a new timer. The timer does not start until ``push()`` is called.
     /// - Parameters:
     ///   - timeInterval: The time interval that the timer needs to wait since the most recent push to fire the callback

@@ -1,5 +1,5 @@
-import XCTest
 @testable import PopTimer
+import XCTest
 
 final class PopTimerTests: XCTestCase {
     func testExample() throws {

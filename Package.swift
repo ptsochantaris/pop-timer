@@ -7,18 +7,20 @@ let package = Package(
     platforms: [
         .macOS(.v11),
         .iOS(.v14),
-        .watchOS(.v7),
+        .watchOS(.v7)
     ],
     products: [
         .library(
             name: "PopTimer",
-            targets: ["PopTimer"]),
+            targets: ["PopTimer"]
+        )
     ],
     targets: [
         .target(
             name: "PopTimer"),
         .testTarget(
             name: "PopTimerTests",
-            dependencies: ["PopTimer"]),
+            dependencies: ["PopTimer"]
+        )
     ]
 )

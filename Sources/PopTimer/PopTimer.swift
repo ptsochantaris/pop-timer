@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 
-// An ultra-simple debouncing push-button / toaster / egg-timer style timer which starts when pushed and fires its callback when it is done. Pushing it again restarts it.
+/// An ultra-simple debouncing push-button / toaster / egg-timer style timer, which starts when pushed and fires its callback when it is done. Pushing it at any point restarts it.
 public final class PopTimer {
     private let publisher = CurrentValueSubject<Bool, Never>(false)
     private var observation: Cancellable?

@@ -4,7 +4,7 @@ import Foundation
 /// An ultra-simple debouncing push-button / toaster / egg-timer style timer, which starts when pushed and fires its callback when it is done. Pushing it at any point restarts it.
 public final class PopTimer {
     private let publisher = CurrentValueSubject<Bool, Never>(false)
-    private var observation: Cancellable?
+    private let observation: Cancellable
 
     /// Start the timer. If the timer is already running, reset the time interval.
     public func push() {
@@ -24,14 +24,17 @@ public final class PopTimer {
     /// Create a new timer. The timer does not start until ``push()`` is called.
     /// - Parameters:
     ///   - timeInterval: The time interval that the timer needs to wait since the most recent push to fire the callback
-    ///   - callback: The code to run when the timer is done. This can be an async block. The block will run in the thread in which the timer was created unless otherwise specified (for instance, with @MainActor).
-    public init(timeInterval: TimeInterval, callback: @escaping () async -> Void) {
+    ///   - callback: The code to run when the timer is done. This can be an async block. The block will call back on @MainActor.
+    public init(timeInterval: TimeInterval, callback: @escaping @MainActor () async -> Void) {
         let stride = RunLoop.SchedulerTimeType.Stride(timeInterval)
-        observation = publisher.debounce(for: stride, scheduler: RunLoop.current).sink { value in
-            guard value else { return }
-            Task {
-                await callback()
+        observation = publisher
+            .debounce(for: stride, scheduler: RunLoop.main)
+            .sink {
+                if $0 {
+                    Task {
+                        await callback()
+                    }
+                }
             }
-        }
     }
 }

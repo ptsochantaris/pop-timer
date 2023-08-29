@@ -8,6 +8,7 @@ That debouncing timer that we've all written 50 times already, in one place, so 
 Currently used in
 - [Trailer](https://github.com/ptsochantaris/trailer)
 - [Gladys](https://github.com/ptsochantaris/gladys)
+- [Mima](https://github.com/ptsochantaris/mima)
 
 Detailed docs [can be found here](https://swiftpackageindex.com/ptsochantaris/pop-timer/documentation)
 
